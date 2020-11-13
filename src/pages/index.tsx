@@ -1,6 +1,6 @@
-import React, {FC} from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
+import React, {FC} from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 
 const Home: FC = () => (
   <div>
@@ -16,6 +16,6 @@ const Home: FC = () => (
       <button type="button">login</button>
     </Link>
   </div>
-)
+);
 
-export default Home
+export default Home;

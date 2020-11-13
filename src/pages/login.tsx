@@ -1,15 +1,20 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 import { useForm } from "react-hook-form";
-const axios = require('axios')
+import axios from 'axios';
 
-const onSubmit = async (data) => {
-  await axios.post('http://localhost:3000/login/login', data).then(res => {
-    console.log(res.data)
-  })
+type reqData = {
+  name: string;
+  password: string;
 }
 
+const onSubmit = async (data: reqData) => {
+  await axios.post('http://localhost:3000/login/login', data).then(res => {
+    localStorage.setItem('token', res.data);
+  });
+};
+
 const login: FC = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   return (
     <>
@@ -27,7 +32,7 @@ const login: FC = () => {
       <button type="submit">login</button>
     </form>
     </>
-  )
-}
+  );
+};
 
-export default login
+export default login;

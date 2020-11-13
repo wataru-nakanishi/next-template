@@ -1,20 +1,26 @@
 import React, { FC } from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 type reqData = {
   name: string;
   password: string;
 }
 
-const onSubmit = async (data: reqData) => {
-  await axios.post('http://localhost:3000/login/login', data).then(res => {
-    localStorage.setItem('token', res.data);
-  });
-};
-
-const login: FC = () => {
+const Login: FC = () => {
   const { register, handleSubmit, errors } = useForm();
+  const router = useRouter();
+
+  const onSubmit = async (data: reqData) => {
+    await axios.post('http://localhost:3000/login/login', data).then(res => {
+      res.data && localStorage.setItem('token', res.data);
+      router.push('/');
+    })
+    .catch(error => {
+      alert(error);
+    });
+  };
 
   return (
     <>
@@ -35,4 +41,4 @@ const login: FC = () => {
   );
 };
 
-export default login;
+export default Login;

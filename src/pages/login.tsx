@@ -24,7 +24,7 @@ const Login: FC = () => {
 
   return (
     <>
-    <h1>Log in</h1>
+    <h1>Log in{process.env.DB_USER}</h1>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="name">name</label>
